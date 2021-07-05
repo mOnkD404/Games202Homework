@@ -125,7 +125,7 @@ vec3 EvalDiffuse(vec3 wi, vec3 wo, vec2 uv) {
   vec3 L = vec3(0.0);
   vec3 defusergb = GetGBufferDiffuse(uv);
   vec3 normal = normalize(GetGBufferNormalWorld(uv));
-  L = defusergb * step(0.0, dot(normal, wi)) / M_PI;
+  L = defusergb * max(0.0, dot(normal, wi)) / M_PI;
   return L;
 }
 
@@ -145,7 +145,7 @@ bool RayMarch(vec3 ori, vec3 dir, out vec3 hitPos) {
   vec3 currentPos = ori;
   vec2 uv = GetScreenCoordinate(currentPos);
 
-  for(int step = 0; step < 100; step++){
+  for(int step = 0; step < 40; step++){
     vec3 newPos = currentPos + dir * stepLen;
     float newDepth = GetDepth(newPos);
     vec2 uv = GetScreenCoordinate(newPos);
