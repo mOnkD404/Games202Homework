@@ -96,7 +96,8 @@ void Denoiser::TemporalAccumulation(const Buffer2D<Float3> &curFilteredColor) {
                     sigma /= count;
                 }
 
-                color = Clamp(color, avg - sigma, avg + sigma * m_colorBoxK);
+                color =
+                    Clamp(color, avg - sigma * m_colorBoxK, avg + sigma * m_colorBoxK);
                 alpha = m_alpha;
             }
             m_misc(x, y) = Lerp(color, curFilteredColor(x, y), alpha);
