@@ -38,10 +38,10 @@ class Denoiser {
     Buffer2D<bool> m_valid;
     bool m_useTemportal;
 
-    float m_alpha = 0.2f;
+    float m_alpha = 0.6f;
     float m_sigmaPlane = 0.1f;
     float m_sigmaColor = 9.0f;
     float m_sigmaNormal = 0.1f;
     float m_sigmaCoord = 32.0f;
-    float m_colorBoxK = 1.0f;
+    float m_colorBoxK = 0.1f;
 };
